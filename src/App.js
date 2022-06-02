@@ -1,10 +1,16 @@
 import './App.css';
-import ReactNavBar from './components/ReactNavBar';
+import ItemListContainer from './components/ItemListContainer';
+import MuiNavbar from './components/MuiNavBar';
+
 
 
 function App() {
   return (
-    <ReactNavBar />
+    <>
+    <MuiNavbar />
+    <ItemListContainer bienvenida={'Bienvenidos a PHRAKIA, empecemos a hacer fotografías y dejar de sacar fotos'} />
+
+    </>
   );
 }
 
