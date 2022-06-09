@@ -6,6 +6,7 @@ import MuiNavbar from './components/MuiNavBar';
 
 
 
+
 function App() {
 
   const onAdd = (count) => {
@@ -19,7 +20,7 @@ function App() {
     <>
     <MuiNavbar />
     <ItemListContainer bienvenida={'Bienvenidos a PHRAKIA, empecemos a hacer fotografías y dejar de sacar fotos'} />
-    <ItemCount inicial={1} max={10} onAdd={onAdd} />
+    {/* <ItemCount inicial={1} max={10} onAdd={onAdd} /> */}
     </>
   );
 } 
