@@ -1,32 +1,15 @@
-import React, {useState, useEffect} from 'react'
-import ItemList from './ItemList'
+import React from 'react'
+import ItemList from "./ItemList.jsx"
 
-function ItemListContainer({ bienvenida }) {
+export default function ItemListContainer({ category }) {
+    return (
+        <div>
 
-  const [fotos, setFotos] = useState([])
+            <h1>Bienvenidos a PHRAKIA, empezá a hacer fotografías y dejá de sacar fotos</h1>
+            <div>
+                <ItemList category={category} />
+            </div>
 
-  useEffect(() => {
-
-     fetch("https://picsum.photos/v2/list")
-
-     .then(res => res.json())
-     .then(res => setFotos(res))
-     .catch(error => console.error("Error:", error))
-
-  
-    
-  }, [])
-  
-  console.log(fotos)
-
-  return (
-    <>
-    <h1>{bienvenida}</h1>
-    <div>
-      <ItemList fotos={fotos} />
-    </div>
-    </>
-  )
+        </div>
+    )
 }
-
-export default ItemListContainer

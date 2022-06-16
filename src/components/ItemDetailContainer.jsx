@@ -1,26 +1,36 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import ItemDetail from "./ItemDetail";
+import React from 'react'
+import { ItemDetail } from './ItemDetail';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Item from './Item.jsx';
 
+export default function ItemDetailContainer() {
 
-function ItemDetailContainer() {
-
-    const [itemDetail, setItemDetail] = useState({})
-    const { id } = useParams()
+    const [itemDetail, itemDetailId] = useState()
+    const {itemId } = useParams()
+    
 
     useEffect(() => {
-        fetch("https://picsum.photos/v2/list")
-            .then(res => res.json()) 
-            .then(fotos => { setItemDetail(fotos.find(foto => foto.id == id)) })
-            .catch(error => console.error("Error", error))
-        console.log(itemDetail)
-    }, [id]);
+
+        fetch('productos.json')
+            .then((response) => response.json())
+            .then((data) => {itemDetailId(data.filter(producto => producto.id == itemId))})
+            .catch((e) => {
+                console.log("error")
+            })
+            .finally(() => {
+                console.log("finalizó")
+            })
+    }, [itemId])
+
 
     return (
-        <>
-            <ItemDetail id={itemDetail.id} title={itemDetail.author} img={itemDetail.download_url} />
-        </>
-    );
-};
+        <div>
 
-export default ItemDetailContainer;
+            {itemDetail && (itemDetail.map((item) => 
+                <ItemDetail id={item.id} title={item.nombre} description={item.description} precio={item.precio} imagen={item.imagen} vacantes={item.vacantes} />
+            ))}
+
+        </div>
+    )
+}

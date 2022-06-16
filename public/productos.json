@@ -1,0 +1,57 @@
+[
+    {
+        "imagen":"C:/coder/phrakia/src/img/recital.jpeg",
+        "nombre":"RECITALES",
+        "category":"cursos",
+        "description":"Potenciá tus fotos en eventos artísticos masivos",
+        "precio":"3500",
+        "vacantes":"50",
+        "id":"1"
+    },
+    {
+        "imagen":"../img/social.jpeg",
+        "nombre":"SOCIALES",
+        "category":"cursos",
+        "description":"Aprendé técnicas fundamentales para eventos sociales",
+        "precio":"5000",
+        "vacantes":"50",
+        "id":"2"
+    },
+    {
+        "imagen":"../img/analog3.jpeg",
+        "nombre":"ILUMINACIÓN INTEGRAL",
+        "category":"carreras",
+        "description":"Adquirí conocimientos claves de iluminación",
+        "precio":"10000",
+        "vacantes":"40",
+        "id":"3"
+    },
+    {
+        "imagen":"../img/byn8.jpeg",
+        "nombre":"ANALÓGICA",
+        "category":"carreras",
+        "description":"Convertite en un experto con cámara analógica",
+        "precio":"12500",
+        "vacantes":"50",
+        "id":"4"
+    },
+    {
+        "imagen":"../img/byn7.jpeg",
+        "nombre":"ESTENOPEICA",
+        "category":"cursos",
+        "description":"Conocé todos los secretos de la Fotografía Estenopeica",
+        "precio":"2000",
+        "vacantes":"40",
+        "id":"5"
+    },
+    {
+        "imagen":"../img/analog2.jpeg",
+        "nombre":"FOTOPERIODISMO",
+        "category":"carreras",
+        "description":"Salí a la calle a capturar los hechos cotidianos con tu cámara",
+        "precio":"20000",
+        "vacantes":"50",
+        "id":"6"
+    }
+    
+]
