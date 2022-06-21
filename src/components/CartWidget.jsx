@@ -5,7 +5,7 @@ function CartWidget({ items }) {
 	return (
 		<>
 			<ShoppingBasketIcon />
-			{items}
+			<span>{items}</span>
 		</>
 	);
 }

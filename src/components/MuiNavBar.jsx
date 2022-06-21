@@ -13,8 +13,9 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import CartWidget from "./CartWidget";
+import { Link } from "react-router-dom";
 
-const pages = ["Cursos", "Staff", "Tienda"];
+const pages = ["Carreras", "Cursos", "Staff", "Tienda"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const MuiNavbar = () => {
@@ -124,6 +125,10 @@ const MuiNavbar = () => {
                 {page}
               </Button>
             ))}
+
+            <Link to= "/category/cursos">Cursos</Link>
+            <Link to= "/category/carreras">Carreras</Link>
+
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

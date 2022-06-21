@@ -1,6 +1,7 @@
+
 [
     {
-        "imagen":"C:/coder/phrakia/src/img/recital.jpeg",
+        "imagen":"/img/recital.jpeg",
         "nombre":"RECITALES",
         "category":"cursos",
         "description":"Potenciá tus fotos en eventos artísticos masivos",
@@ -9,7 +10,7 @@
         "id":"1"
     },
     {
-        "imagen":"../img/social.jpeg",
+        "imagen":"/img/social.jpeg",
         "nombre":"SOCIALES",
         "category":"cursos",
         "description":"Aprendé técnicas fundamentales para eventos sociales",

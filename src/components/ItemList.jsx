@@ -7,56 +7,48 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
 
-export default function ItemList({category}) {
+export default function ItemList() {
 
-    //estados
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [resultado, setResultado] = useState([]);
-
+    const {category} = useParams ()
     useEffect(() => {
 
         fetch('productos.json')
             .then((response) => response.json())
             .then((data) => {
 
-                setTimeout(() => {
-
-                    setLoading(false)
-                    setResultado(data);
-
-                }, 1500);
+                if (category){
+                    setResultado(data.filter(product=> product.category === category) )
+                }
+                else {setResultado (data)}
             })
             .catch((e) => {
-
+            console.log(e)
             })
             .finally(() => {
                 console.log("the end")
             })
-    }, [])
+    }, [category])
 
+    console.log(category)
+    console.log(resultado)
 
-    let filterResultado = []
-
-    if (category != undefined){
-        filterResultado = resultado.filter(number => number.category === category)
-    } else {
-        filterResultado = resultado
-    }
 
 
     return (
         <>
 
-            <div>{loading && "Loading courses..."}</div>
-            <div>{error && "404 error..."}</div>
+            {/* <div>{loading && "Loading courses..."}</div>
+            <div>{error && "404 error..."}</div> */}
 
             
 
             <div>
-                {filterResultado && (filterResultado.map((item) =>
-                    <Item id={item.id} nombre={item.nombre} description={item.description} precio={item.precio} imagen={item.imagen} vacantes={item.vacantes} />
-                ))}
+                { resultado.map((item) =>
+                    <Item id={item.id} nombre={item.nombre} description={item.description} category={item.category} precio={item.precio} imagen={item.imagen} vacantes={item.vacantes} />
+                )}
             </div>
 
 

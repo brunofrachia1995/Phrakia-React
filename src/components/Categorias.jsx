@@ -10,7 +10,7 @@ function Categorias() {
         variant="contained"
         aria-label="outlined primary button group"
       >
-        <Link to={'/category/cursos'}>
+        <Link to='/category/cursos' category={"cursos"}>
           <Button>Cursos</Button>
         </Link>
         <Link to={'/category/carreras'}>

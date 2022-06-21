@@ -4,6 +4,8 @@ import Home from "./routes/Home";
 import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import MuiNavbar from './components/MuiNavBar';
+import Cart from './components/Cart';
+import ItemList from './components/ItemList';
 
 
 
@@ -23,13 +25,15 @@ function App() {
       <BrowserRouter>
         <MuiNavbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<ItemList />} />
 
-          <Route path="/item/:itemId" element={<ItemDetailContainer />} />
+          <Route path="/item/:id" element={<ItemDetailContainer />} />
 
-          <Route path="/category/cursos" element={<ItemListContainer category={"cursos"} />} />
+          <Route path="/category/:category" element={<ItemList />} />
 
-          <Route path="/category/carreras" element={<ItemListContainer category={"carreras"} />} />
+          
+
+          <Route path="/cart" element={<Cart/>} />
 
         </Routes>
       </BrowserRouter>

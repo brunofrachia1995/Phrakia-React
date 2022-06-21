@@ -7,7 +7,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-export function Item({ id, nombre, description, precio, imagen, vacantes }) {
+export function Item({ id, nombre, category, description, precio, imagen, vacantes }) {
   return (
     <div>
       <Card sx={{ maxWidth: 345, margin: 2 }}>
@@ -16,6 +16,7 @@ export function Item({ id, nombre, description, precio, imagen, vacantes }) {
           height="140"
           image={imagen}
           alt="Phrakia"
+          category={category}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -26,7 +27,9 @@ export function Item({ id, nombre, description, precio, imagen, vacantes }) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Agregar a carrito</Button>
+          <Button size="small">
+          <Link to = {'/item/'+ id}>Agregar al carrito</Link>
+          </Button>
           <Link to={`/item/${id}`}>
             <Button size="small">Ver más</Button>
           </Link>
