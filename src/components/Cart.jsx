@@ -1,9 +1,16 @@
 import React from 'react'
 
-export default function Cart() {
+export default function Cart({ nombre, id, cantidad, imagen, precio, deleteItem }) {
   return (
     <>
-    <h1>Cart</h1>
-    </>
+    <div> 
+      <h1>Carrito</h1>
+      <div>
+        <p><span>Precio:</span> {precio}</p>
+        <p><span>Productos Agregados:</span> {cantidad}</p>
+        <button onClick={()=>{deleteItem(id)}}> Eliminar Carrera/Curso</button>
+      </div>
+    </div>
+</>
   )
 }
