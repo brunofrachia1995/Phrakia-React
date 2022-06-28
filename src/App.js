@@ -4,7 +4,7 @@ import ItemDetailContainer from "./components/ItemDetailContainer";
 import MuiNavbar from './components/MuiNavBar';
 import Cart from './components/Cart';
 import ItemList from './components/ItemList';
-import MyProvider from './components/context/CartContext';
+import CartProvider from './components/context/CartContext';
 
 
 
@@ -22,7 +22,7 @@ function App() {
 
     <>
       <BrowserRouter>
-      <MyProvider>
+      <CartProvider>
         <MuiNavbar />
         <Routes>
           <Route path="/" element={<ItemList />} />
@@ -36,7 +36,7 @@ function App() {
           <Route path="/cart" element={<Cart/>} />
 
         </Routes>
-        </MyProvider>
+        </CartProvider>
       </BrowserRouter>
     </>
 

@@ -1,57 +1,127 @@
-import React from 'react'
-import {createContext, useState } from "react";
-
+import React from 'react';
+import { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext({});
 
-const MyProvider = ({ children }) => {
+export const CartProvider = ({ children }) => {
+
   const [cart, setCart] = useState([]);
 
-  // Agrega producto al cart evitando la repetición
-  const addItem = (item, count) => {
-    const newItem = {
-      ...item,
-      count,
-    };
+  useEffect(() => {
+    getCartFromLocalStorage(); 
+  }, []);  
 
-    if (inCart(newItem.id)) {
-      const findProduct = cart.find((x) => x.id === newItem.id);
-      const productIndex = cart.indexOf(findProduct);
-      const auxArray = [...cart];
-      auxArray[productIndex].count += count;
-      setCart(auxArray);
+  const addItem = ( item ) => {
+
+    let newCart = [];
+
+    if ( isInCart(item.id) ) {
+      
+      newCart = cart.reduce((acc, _item) => {
+        if(item.id !== _item.id) {
+          return acc.concat(_item);
+        } else {
+          return acc.concat({ ..._item, quantity: _item.quantity + item.quantity});
+        }
+      }, []);
+
     } else {
-      setCart([...cart, newItem]);
+
+      newCart = cart.concat(item);
+
     }
+
+    setCart(newCart);
+    setCartInLocalStorage(newCart);
+  }
+
+  const increaseItemQuantity = ({ id }) => {
+    let newCart = [];
+    newCart = cart.reduce((acc, _item) => {
+      if(id !== _item.id) {
+        return acc.concat(_item);
+      } else {
+        return acc.concat({ ..._item, quantity: _item.quantity + 1});
+      }
+    }, []);
+    setCart(newCart);
+    setCartInLocalStorage(newCart);
+  }
+
+  const removeItem = ( id ) => {
+    const newCart = cart.filter( _item => _item.id !== id );
+    setCart(newCart);
+    setCartInLocalStorage(newCart);
+  }
+
+  const decreaseItemQuantity = ({ id, quantity }) => {
+
+    if (quantity === 1) {
+      removeItem(id);
+      return;
+    }
+
+    let newCart = [];
+    newCart = cart.reduce((acc, _item) => {
+      if (id !== _item.id) {
+        return acc.concat(_item);
+      } else {
+        return acc.concat({ ..._item, quantity: _item.quantity - 1 });
+      }
+    }, []);
+    setCart(newCart);
+    setCartInLocalStorage(newCart);
+
+  }
+   
+  const cartClear = () => {
+    setCart([])
+    setCartInLocalStorage([]);
   };
 
-  // Chequea si el producto ya está en el cart - TRUE / FALSE
-  const inCart = (id) => {
-    return cart.some((x) => x.id === id);
-  };
+  const isInCart = ( id ) => {
+    return cart.some( _item => _item.id === id);
+  }
+  
+  const quantityInCart = ( id ) => {
+    const item = cart.find(_item => _item.id === id);
+    if (item) {
+      return item.quantity;
+    }
+    return 0;
+  }
 
-  // Vacia el cart
-  const emptyCart = () => {
-    setCart([]);
-  };
+  const totalInCart = () => {
+    return cart.reduce( (acc, item) => {
+      return acc = acc + item.quantity
+    }, 0)
+  }
 
-  // Elimina un producto del cart
-  const deleteItem = (id) => {
-    return setCart(cart.filter((x) => x.id !== id));
-  };
+  const getCartFromLocalStorage = () => {
+    if (localStorage.getItem('cart')) {
+      setCart(JSON.parse(localStorage.getItem('cart')));
+    }
+  }
 
-  // Cantidad de un producto en el cart
-  const getItemQty = () => {
-    return cart.reduce((acc, item) => (acc += item.cantidad), 0);
-  };
-
-  // Retorna el precio
-  const getItemPrice = () => {
-    return cart.reduce((acc, item) => (acc += item.precio * item.cantidad), 0);
-  };
+  const setCartInLocalStorage = ( cart ) => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
 
   return (
-    <CartContext.Provider value={{ cart, inCart, addItem, deleteItem, emptyCart, getItemQty, getItemPrice }}> { children } </CartContext.Provider>  );
-};
+    <CartContext.Provider value={{
+      cart,
+      addItem,
+      removeItem,
+      cartClear,
+      quantityInCart,
+      totalInCart,
+      increaseItemQuantity,
+      decreaseItemQuantity
+    }}>
+      { children }
+    </CartContext.Provider>
+  )
 
-export default MyProvider;
+}
+
+export default CartProvider;

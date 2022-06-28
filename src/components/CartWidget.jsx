@@ -1,13 +1,15 @@
-import React from 'react';
+import React from 'react'
+import { Button } from '@mui/material'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 
-function CartWidget({ items }) {
-	return (
-		<>
-			<ShoppingBasketIcon />
-			<span>{items}</span>
-		</>
-	);
-}
 
-export default CartWidget;
+export default function CartWidget({ }) {
+  return (
+    <Button
+      variant='notBg'
+    >
+      <ShoppingBasketIcon />
+    
+    </Button>
+  )
+}
