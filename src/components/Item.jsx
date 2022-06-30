@@ -7,7 +7,10 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-export function Item({ id, nombre, category, description, precio, imagen, vacantes }) {
+
+export default function Item( { producto } ) {
+  const { id, nombre, categoria, description, precio, imagen, vacantes } = producto;
+  
   return (
     <div>
       <Card sx={{ maxWidth: 345, margin: 2 }}>
@@ -16,7 +19,7 @@ export function Item({ id, nombre, category, description, precio, imagen, vacant
           height="140"
           image={imagen}
           alt="Phrakia"
-          category={category}
+          categoria={categoria}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -39,4 +42,3 @@ export function Item({ id, nombre, category, description, precio, imagen, vacant
   );
 }
 
-export default Item;

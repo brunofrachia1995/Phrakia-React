@@ -3,10 +3,19 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import MuiNavbar from './components/MuiNavBar';
 import Cart from './components/Cart';
-import ItemList from './components/ItemList';
 import CartProvider from './components/context/CartContext';
+import { initializeApp } from "firebase/app";
+import ItemListContainer from './components/ItemListContainer';
 
 
+initializeApp({
+  apiKey: "AIzaSyDbnBy4aQMV4ggBgn-OkeqyVB4NxYIpi5M",
+  authDomain: "phrakia---photography-school.firebaseapp.com",
+  projectId: "phrakia---photography-school",
+  storageBucket: "phrakia---photography-school.appspot.com",
+  messagingSenderId: "165473050854",
+  appId: "1:165473050854:web:9a565befb3e724affd9b27"
+});
 
 
 
@@ -25,13 +34,11 @@ function App() {
       <CartProvider>
         <MuiNavbar />
         <Routes>
-          <Route path="/" element={<ItemList />} />
+          <Route path="/" element={<ItemListContainer />} />
 
           <Route path="/item/:id" element={<ItemDetailContainer />} />
 
-          <Route path="/category/:category" element={<ItemList />} />
-
-          
+          <Route path="/category/:id" element={<ItemListContainer category_id={"XOnugTqWGiTfT0Q0B2QH"} />} />
 
           <Route path="/cart" element={<Cart/>} />
 
