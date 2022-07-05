@@ -7,7 +7,3 @@ export default function ItemList( { productos } ) {
         <div>{productos?.map(producto => <Item key={producto.id} producto={producto} />)}</div>
     )
 }
-
-
-
-

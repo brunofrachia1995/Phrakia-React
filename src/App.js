@@ -6,6 +6,7 @@ import Cart from './components/Cart';
 import CartProvider from './components/context/CartContext';
 import { initializeApp } from "firebase/app";
 import ItemListContainer from './components/ItemListContainer';
+import Checkout from './components/Checkout';
 
 
 initializeApp({
@@ -41,6 +42,8 @@ function App() {
           <Route path="/category/:id" element={<ItemListContainer category_id={"XOnugTqWGiTfT0Q0B2QH"} />} />
 
           <Route path="/cart" element={<Cart/>} />
+
+          <Route path="/checkout" element={ <Checkout/> } />
 
         </Routes>
         </CartProvider>
